@@ -9,7 +9,8 @@ class Admin::UsersController < Admin::BaseController
 
     if params[:search].present?
       if params[:search][:search_term].size >= 3
-        @users = @users.email_search(params[:search][:search_term])
+        @users = OmniSearch.new(params[:search][:search_term], {email: :string})
+                           .apply_scope_to(@users)
       else
         flash.now[:alert] = "Unable to search, requires 3 or more characters."
       end
