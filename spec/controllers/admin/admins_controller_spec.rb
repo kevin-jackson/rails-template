@@ -19,6 +19,26 @@ RSpec.describe Admin::AdminsController do
           it { should_not include(FactoryGirl.create(:user, :member)) }
         end
 
+        describe "filtering by email" do
+          let(:params) { {search: {search_term: search_term}} }
+
+          context "when search term is 3 or more characters" do
+            let(:search_term) { "whatever" }
+
+            it { should include(FactoryGirl.create(:user, :admin, email: "whatever@example.com")) }
+            it { should_not include(FactoryGirl.create(:user, :admin, email: "whatnot@example.com")) }
+          end
+
+          context "when search term is fewer than 3 characters" do
+            let(:search_term) { "cd" }
+            it "returns an error message to the user" do
+              subject
+              expect(request.flash[:alert]).to include("Unable to search, requires 3 or more characters.")
+            end
+            it { should include(FactoryGirl.create(:user, :admin, email: "ab@example.com")) }
+          end
+        end
+
         describe "sorting" do
           let(:params) { {sort_direction: direction, sort_attribute: "email"} }
 
