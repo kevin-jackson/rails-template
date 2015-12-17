@@ -2,19 +2,12 @@ class Admin::UsersController < Admin::BaseController
 
   def index
     authorize(User)
-    @users = User.public_send(user_role)
-                 .sort(params, default_sort_options)
-                 .page(params[:page])
+    @ransack = User.ransack(params[:q])
+    @users = @ransack.result
+                     .public_send(user_role)
+                     .sort(params, default_sort_options)
+                     .page(params[:page])
     @users = policy_scope(@users)
-
-    if params[:search].present?
-      if params[:search][:search_term].size >= 3
-        @users = OmniSearch.new(params[:search][:search_term], {email: :string})
-                           .apply_scope_to(@users)
-      else
-        flash.now[:alert] = "Unable to search, requires 3 or more characters."
-      end
-    end
   end
 
   def new

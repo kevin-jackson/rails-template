@@ -1,6 +1,10 @@
-= simple_form_for :search, method: :get do |s|
-  = s.input :search_term, label: "Email", placeholder: "Type email here", input_html: { value: (params[:search][:search_term] unless params[:search].blank?) }
-  = s.button :submit, "Search"
+/ = simple_form_for :search, method: :get do |s|
+/   = s.input :search_term, label: "Email", placeholder: "Type email here", input_html: { value: (params[:search][:search_term] unless params[:search].blank?) }
+/   = s.button :submit, "Search"
+
+= search_form_for(@ransack, url: request.path) do |f|
+  = f.input :email_cont, as: :string
+  = f.button :submit
 
 - if @users.present?
   %table
