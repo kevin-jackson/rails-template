@@ -1,5 +1,6 @@
 .page-header
   %h1 Member Management
 .section-header
-  %h1 New Admin
-= render partial: "form", locals: {url: admin_admins_path}
+  %h2 New Admin
+.section-content
+  = render partial: "form", locals: {url: admin_admins_path}
