@@ -2,7 +2,8 @@
   = javascript_include_tag 'admin'
 
 - content_for :stylesheets do
-  = stylesheet_link_tag 'admin', media: 'all'
+  -#= stylesheet_link_tag 'admin', media: 'all'
+  = stylesheet_link_tag 'https://cdn.jsdelivr.net/foundation/6.1.1/foundation.min.css', media: 'all'
 
 - content_for :content do
   %aside{role: 'complementary'}
