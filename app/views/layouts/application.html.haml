@@ -9,54 +9,46 @@
     %meta{name: "viewport", content: "width=device-width,initial-scale=1"}
 
   %body
+    %h1.show-for-sr TfgTemplate
     %header{role: 'banner'}
-      .title-bar{data: {responsive_toggle: "example-menu", hide_for: "medium"}}
-        %button.menu-icon{type: "button", data: {toggle: true}}
-        .title-bar-title Menu
+      %nav{role: 'navigation'}
+        %h1.show-for-sr Navigation
+        .title-bar.hide-for-medium{data: {responsive_toggle: "example-menu", hide_for: "medium"}}
+          .title-bar-left
+            .title-bar-title
+              = link_to root_path, class: "logo", rel: "home" do
+                = image_tag 'create-glyph-logo.svg', size: '34x34'
+                TfgTemplate
+          .title-bar-right
+            %button.menu-icon{type: "button", data: {toggle: ""}}
 
-      .top-bar
-        .top-bar-left
-          %ul.dropdown.menu
-            %li.menu-text
-              TfgTemplate
-        .top-bar-right
-          %ul.menu
-            %li= link_to "Sign in", new_user_session_path
-            %li= link_to "Sign up", new_user_registration_path
+        #example-menu.top-bar.show-for-medium
+          .top-bar-left
+            %ul.dropdown.menu
+              %li
+                = link_to root_path, class: "logo", rel: "home" do
+                  = image_tag 'create-glyph-logo.svg', size: '34x34'
+                  TfgTemplate
+          .top-bar-right
+            %ul.menu
+              - if current_user.present?
+                - if policy(:dashboard).member_dashboard?
+                  = render "layouts/member/navigation"
+                - if policy(:dashboard).admin_dashboard?
+                  = render "layouts/admin/navigation"
+                %li= link_to "Sign out", destroy_user_session_path, method: :delete
+              - else
+                %li= link_to "Sign in", new_user_session_path
+                %li= link_to "Sign up", new_user_registration_path
 
+    - flash.each do |key, value|
+      .flash-wrapper
+        .callout{class: "#{key}"}
+          = value
+          %button.close-button{type: "button", aria: {label: "Dismiss alert"}, data: {close: ""}}
+            %span{aria: {hidden: "true"}} &times;
 
-    -#   .container
-    -#     = link_to root_path, class: "logo", rel: "home" do
-    -#       = image_tag 'create-glyph-logo.svg', size: '34x34'
+    = content_for?(:content) ? yield(:content) : yield
 
-    -#     .navigation-wrapper
-    -#       %button.mobile-nav.js-nav-toggle{aria: {label: "Toggle Navigation"}, data: {navigation_toggle_target: '#site-nav', requires_modal: 'true'}}
-    -#         %span Menu
-
-    -#       %nav#site-nav.is-collapsed{role: 'navigation'}
-    -#         %h1 Navigation
-
-    -#         - if current_user.present?
-    -#           %ul.site-nav
-    -#             - if policy(:dashboard).member_dashboard?
-    -#               = render "layouts/member/navigation"
-    -#             - if policy(:dashboard).admin_dashboard?
-    -#               = render "layouts/admin/navigation"
-
-    -#         %ul.session
-    -#           - if current_user
-    -#             %li= link_to "Sign out", destroy_user_session_path, method: :delete
-    -#           - else
-    -#             %li= link_to "Sign in", new_user_session_path
-    -#             %li= link_to "Sign up", new_user_registration_path
-
-    -# .container
-    -#   - flash.each do |key, value|
-    -#     .flash-wrapper
-    -#       .flash{class: "flash-#{key}"}= value
-
-    -#   = content_for?(:content) ? yield(:content) : yield
-
-    -# #js-fade-screen
-    -# = yield(:javascripts)
-    -# = javascript_include_tag 'easy_sign_in' if Rails.application.config.should_show_easy_login
+    = yield(:javascripts)
+    = javascript_include_tag 'easy_sign_in' if Rails.application.config.should_show_easy_login

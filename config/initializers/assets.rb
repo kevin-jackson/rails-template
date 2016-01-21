@@ -9,4 +9,6 @@ Rails.application.config.assets.precompile += %w(
   member.css
   admin.js
   admin.css
+  foundation.min.css
+  foundation.js
 )

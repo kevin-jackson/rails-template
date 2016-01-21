@@ -3,13 +3,14 @@
 
 - content_for :stylesheets do
   -#= stylesheet_link_tag 'admin', media: 'all'
-  = stylesheet_link_tag 'https://cdn.jsdelivr.net/foundation/6.1.1/foundation.min.css', media: 'all'
+  = stylesheet_link_tag 'foundation.min.css', media: 'all'
 
 - content_for :content do
-  %aside{role: 'complementary'}
-    = render 'layouts/admin/sidebar'
+  .row
+    %main.column.medium-9.medium-push-3{role: 'main'}
+      = yield
 
-  %main{role: 'main'}
-    = yield
+    %aside.column.medium-3.medium-pull-9{role: 'complementary'}
+      = render 'layouts/admin/sidebar'
 
 = render template: "layouts/application"

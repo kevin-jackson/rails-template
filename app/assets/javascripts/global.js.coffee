@@ -2,4 +2,4 @@
 #= require jquery
 #= require jquery_ujs
 
-#= require_tree ./global
+##= require_tree ./global
