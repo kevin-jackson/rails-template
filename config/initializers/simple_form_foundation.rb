@@ -29,13 +29,13 @@ SimpleForm.setup do |config|
     b.optional :readonly
 
     b.wrapper :label_wrapper, tag: :div, class: 'small-3 columns' do |ba|
-      ba.use :label, class: 'right inline'
+      ba.use :label, class: 'text-right middle'
     end
 
     b.wrapper :right_input_wrapper, tag: :div, class: 'small-9 columns' do |ba|
       ba.use :input
-      ba.use :error, wrap_with: { tag: :small, class: :error }
-      # ba.use :hint,  wrap_with: { tag: :span, class: :hint }
+      ba.use :error, wrap_with: { tag: :span, class: "form-error is-visible" }
+      ba.use :hint,  wrap_with: { tag: :p, class: "help-text" }
     end
   end
 
@@ -50,7 +50,7 @@ SimpleForm.setup do |config|
       end
 
       ba.use :error, wrap_with: { tag: :small, class: :error }
-      # ba.use :hint,  wrap_with: { tag: :span, class: :hint }
+      ba.use :hint,  wrap_with: { tag: :p, class: "help-text" }
     end
   end
 
@@ -69,7 +69,7 @@ SimpleForm.setup do |config|
     b.optional :min_max
     b.optional :readonly
 
-    b.use :label, class: 'hidden-for-small-up'
+    b.use :label, class: 'show-for-small-only show-for-sr'
     b.use :input
 
     b.use :error, wrap_with: { tag: :small, class: :error }
