@@ -1,5 +1,5 @@
 .row
-  .column.medium-4
+  .column.medium-4.medium-offset-2
     %h2 Sign in
 
     = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "authentication-form" }) do |f|
@@ -13,7 +13,7 @@
     = render "devise/shared/links"
 
   - if Rails.application.config.should_show_easy_login
-    .column.medium-7.medium-offset-1
+    .column.medium-5.medium-offset-1
       %hr.hide-for-medium
       .easy-sign-in
         %h3 Easy Sign-in
