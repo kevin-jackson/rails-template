@@ -43,7 +43,7 @@
 
     - flash.each do |key, value|
       .flash-wrapper
-        .callout{class: "#{key}"}
+        .callout{class: flash_class(key), data: {closable: ''}}
           = value
           %button.close-button{type: "button", aria: {label: "Dismiss alert"}, data: {close: ""}}
             %span{aria: {hidden: "true"}} &times;
