@@ -33,6 +33,7 @@ gem 'uri_query_merger'
 
 group :development do
   gem 'better_errors'
+  gem 'frontier_generators', github: "thefrontiergroup/frontier_generators", branch: "issue/4_inline_form"
   gem 'letter_opener'
   gem 'quiet_assets'
   gem 'seed_helper'

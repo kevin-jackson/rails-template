@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/thefrontiergroup/frontier_generators.git
+  revision: 7baa7d3fcf75813ae57f4d98c010869ffd3c01e2
+  branch: issue/4_inline_form
+  specs:
+    frontier_generators (0.14.6)
+
+GIT
   remote: git://github.com/thefrontiergroup/rails_sort.git
   revision: 1ffd4b7671879538207555b6a8d4725e9851adfb
   specs:
@@ -304,6 +311,7 @@ DEPENDENCIES
   email_spec
   factory_girl_rails
   ffaker
+  frontier_generators!
   haml-rails
   jquery-rails
   jquery-timepicker-rails
