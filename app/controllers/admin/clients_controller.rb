@@ -1,9 +1,10 @@
-class ClientsController < ApplicationController
+class Admin::ClientsController < Admin::BaseController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
 
   def index
+    authorize(User)
     @clients = Client.all
     respond_with(@clients)
   end
