@@ -17,10 +17,8 @@
         %tr
           %td= client.name
           %td.actions
-            /- if policy(user).edit?
             = link_to "Edit", edit_admin_client_path(client), class: "btn btn-small"
-            /- if policy(user).destroy?
-            = link_to "Delete", admin_client_path(client), :method => :delete, :data => { confirm: "Are you sure you want to delete #{client.name}?" }, class: "btn btn-small"
+            = link_to "Delete", admin_client_path(client), :method => :delete, :data => { confirm: "Are you sure you want to delete #{client}?" }, class: "btn btn-small"
   /= paginate @clients
 
 - else
