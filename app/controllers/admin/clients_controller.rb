@@ -6,7 +6,7 @@ class Admin::ClientsController < Admin::BaseController
   def index
     authorize(User)
     @clients = Client.all
-    respond_with(@clients)
+    #respond_with(@clients)
   end
 
   def show
@@ -14,8 +14,9 @@ class Admin::ClientsController < Admin::BaseController
   end
 
   def new
+    authorize(User)
     @client = Client.new
-    respond_with(@client)
+    #respond_with(@client)
   end
 
   def edit
@@ -23,8 +24,9 @@ class Admin::ClientsController < Admin::BaseController
 
   def create
     @client = Client.new(client_params)
+    authorize(User)
     @client.save
-    respond_with(@client)
+    respond_with(@client, location: admin_clients_path)
   end
 
   def update
