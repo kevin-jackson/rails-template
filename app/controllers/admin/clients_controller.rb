@@ -5,7 +5,7 @@ class Admin::ClientsController < Admin::BaseController
 
   def index
     authorize(Client)
-    @clients = Client.all
+    @clients = Client.all.page(params[:page])
   end
 
   def new
