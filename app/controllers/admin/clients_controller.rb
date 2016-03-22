@@ -1,42 +1,39 @@
 class Admin::ClientsController < Admin::BaseController
-  before_action :set_client, only: [:show, :edit, :update, :destroy]
+  before_action :set_client, only: [:edit, :update, :destroy]
 
   respond_to :html
 
   def index
-    authorize(User)
+    authorize(Client)
     @clients = Client.all
-    #respond_with(@clients)
-  end
-
-  def show
-    respond_with(@client)
   end
 
   def new
-    authorize(User)
     @client = Client.new
-    #respond_with(@client)
+    authorize(@client)
   end
 
   def edit
+    authorize(@client)
   end
 
   def create
     @client = Client.new(client_params)
-    authorize(User)
+    authorize(@client)
     @client.save
     respond_with(@client, location: admin_clients_path)
   end
 
   def update
+    authorize(@client)
     @client.update(client_params)
-    respond_with(@client)
+    respond_with(@client, location: admin_clients_path)
   end
 
   def destroy
+    authorize(@client)
     @client.destroy
-    respond_with(@client)
+    redirect_to(admin_clients_path, notice: "'#{@client}' deleted")
   end
 
   private
