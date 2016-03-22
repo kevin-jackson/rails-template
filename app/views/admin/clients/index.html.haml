@@ -22,9 +22,6 @@
   /= paginate @clients
 
 - else
-  - if params[:q].present?
-    %p No users matched your search.
-  - else
-    %p
-      There are no clients.
-      = link_to "Create a client.", new_admin_client_path
+  %p
+    There are no clients.
+    = link_to "Create a client.", new_admin_client_path

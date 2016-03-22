@@ -1,8 +1,9 @@
 class Client < ActiveRecord::Base
-	validates :name, presence: true
-	validates :name, uniqueness: true
+  validates :name, presence: true
+  validates :name, uniqueness: true
 
-	def to_s
-		name
-	end
+  def to_s
+    name
+  end
+
 end

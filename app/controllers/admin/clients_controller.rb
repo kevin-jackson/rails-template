@@ -36,12 +36,14 @@ class Admin::ClientsController < Admin::BaseController
     redirect_to(admin_clients_path, notice: "'#{@client}' deleted")
   end
 
-  private
-    def set_client
-      @client = Client.find(params[:id])
-    end
+private
 
-    def client_params
-      params.require(:client).permit(:name)
-    end
+  def set_client
+    @client = Client.find(params[:id])
+  end
+
+  def client_params
+    params.require(:client).permit(:name)
+  end
+
 end
