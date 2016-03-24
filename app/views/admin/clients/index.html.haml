@@ -3,6 +3,10 @@
   .collection-actions
     = link_to "Add new client", new_admin_client_path, class: "btn"
 
+= search_form_for @ransack_query, method: :get, url: request.path do |s|
+  = s.input :name_cont, label: "Search by name", placeholder: "Type name here: Test Client", as: :string, label_html: {class: "visually-hidden"}
+  = s.button :submit, "Search"
+
 - if @clients.present?
   %table
     %colgroup
