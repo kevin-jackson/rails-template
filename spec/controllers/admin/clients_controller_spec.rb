@@ -109,7 +109,7 @@ RSpec.describe Admin::ClientsController, type: :controller do
     it_behaves_like "action authorizes roles", [:admin]
   end
 
-  describe 'POST destroy' do
+  describe 'DELETE destroy' do
     subject { delete :destroy, id: target_client.id }
     let(:target_client) { FactoryGirl.create(:client) }
 
