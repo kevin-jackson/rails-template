@@ -6,7 +6,8 @@ class Admin::ClientsController < Admin::BaseController
   def index
     authorize(Client)
     @ransack_query = Client.ransack(params[:q])
-    @clients = Client.all.merge(@ransack_query.result).page(params[:page])
+    #@clients = Client.all.merge(@ransack_query.result).page(params[:page])
+    @clients = @ransack_query.result.page(params[:page])
   end
 
   def new
