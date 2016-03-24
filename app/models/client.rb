@@ -1,4 +1,7 @@
 class Client < ActiveRecord::Base
+
+  has_one :address, dependent: :destroy
+
   paginates_per 10
 
   validates :name, presence: true
