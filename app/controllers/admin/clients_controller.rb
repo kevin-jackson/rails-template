@@ -5,7 +5,7 @@ class Admin::ClientsController < Admin::BaseController
 
   def index
     authorize(Client)
-    @ransack_query = Client.ransack(params[:q])
+    @ransack_query = Client.includes(:address).ransack(params[:q])
     @clients = @ransack_query.result.page(params[:page])
   end
 
@@ -44,7 +44,7 @@ private
   end
 
   def client_params
-    params.require(:client).permit(:name)
+    params.require(:client).permit(:name, address_attributes: [:id, :line_1, :line_2, :suburb, :city, :state, :post_code])
   end
 
 end
