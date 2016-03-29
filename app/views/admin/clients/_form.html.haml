@@ -1,7 +1,9 @@
-= simple_form_for [:admin, @client], wrapper: "horizontal", html: { class: "form-horizontal"}, url: url do |f|
+= simple_form_for [:admin, setup_client(@client)], wrapper: "horizontal", html: { class: "form-horizontal"}, url: url do |f|
 
   .form-inputs
     = f.input :name
+
+    = render partial: "address/form", locals: {address: f}
 
   .form-actions
     = f.button :submit
