@@ -1,7 +1,6 @@
 class CreateAddresses < ActiveRecord::Migration
   def change
     create_table :addresses do |t|
-      t.belongs_to :client
       t.string :line_1, null: false, limit: 200
       t.string :line_2, limit: 200
       t.string :suburb, limit: 100
