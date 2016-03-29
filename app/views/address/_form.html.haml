@@ -1,0 +1,10 @@
+%h2= "Address"
+%hr
+
+= address.fields_for :address do |ff|
+    = ff.input :line_1
+    = ff.input :line_2
+    = ff.input :suburb
+    = ff.input :city
+    = ff.input :state
+    = ff.input :post_code
