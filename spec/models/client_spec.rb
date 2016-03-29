@@ -25,15 +25,6 @@ RSpec.describe Client, type: :model do
     end
   end
 
-  describe "client search by name" do
-    subject { Client.name_search("Test") }
-
-    it { should include(FactoryGirl.create(:client, name: "Test Client")) }
-    it { should include(FactoryGirl.create(:client, name: "TeST")) }
-    it { should include(FactoryGirl.create(:client, name: "ClientTest")) }
-    it { should_not include(FactoryGirl.create(:client, name: "Client")) }
-  end
-
   describe '#to_s' do
     specify { expect(Client.new(name: "Client").to_s).to eq("Client") }
   end
